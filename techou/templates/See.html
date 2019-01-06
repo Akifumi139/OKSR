@@ -6,7 +6,33 @@
     <title>お薬手帳モバイル-見る-</title>
   </head>
   <body  bgcolor="lemonchiffon">
-    <div class="btn" id="see"><a href="main.html" >手帳を見る</a></div>
+    <div class="btn" id="see">
+      <a href="{% url 'index' %}" >←戻る</a>
+      <a href="{% url 'Write' %}" >記録する→</a>
+    </div>
+    手帳を見る<br>
     お薬一覧
+    {% block body %}
+  <form method="post" action="">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>購入日</th>
+          <th>薬の名前</th>
+          <th>薬局名</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+          <tr>
+            <td>{{ message.purchase_date }}</td>
+            <td>{{ message.medicine_name }}</td>
+            <td>{{ message.pharmacy_name }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </form>
+{% endblock %}
   </body>
 </html>

@@ -6,9 +6,16 @@
     <title>お薬手帳モバイル-記入-</title>
   </head>
   <body  bgcolor="lemonchiffon">
-    <div class="btn" id="see"><a href="main.html" >手帳に書き込む</a></div>
-    写真から
+    <div class="btn" id="Write"><a href="{% url 'index' %}" >←戻る</a></div>
+    手帳に書き込む<br>
+    <a href="{% url 'take_img' %}" >写真から</a>
     <br>
-    手動で
+    <table>
+        <form action="{% url 'Write' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <tr><td></td><td><input type="submit" value="登録"></td></tr>
+        </form>
+    </table>
   </body>
 </html>
